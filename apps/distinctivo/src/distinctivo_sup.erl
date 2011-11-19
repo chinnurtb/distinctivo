@@ -14,12 +14,19 @@
 %% ===================================================================
 
 start_link() ->
-    supervisor:start_link({local, ?MODULE}, ?MODULE, []).
+    esupervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 %% ===================================================================
 %% Supervisor callbacks
 %% ===================================================================
 
 init([]) ->
-    #one_for_one{}.
+    #one_for_one{
+      children = [
+                  #worker{
+                     id = distinctivo_dispatch,
+                     restart = permanent
+                    }
+                 ]
+     }.
 

@@ -8,5 +8,5 @@
                   stdlib
                  ]},
   {mod, { distinctivo_app, []}},
-  {env, []}
+  {env, [{http_port, 8888}]}
  ]}.
