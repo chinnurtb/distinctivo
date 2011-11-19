@@ -1,0 +1,12 @@
+{application, distinctivo,
+ [
+  {description, ""},
+  {vsn, git},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { distinctivo_app, []}},
+  {env, []}
+ ]}.
