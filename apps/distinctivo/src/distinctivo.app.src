@@ -5,7 +5,10 @@
   {registered, []},
   {applications, [
                   kernel,
-                  stdlib
+                  stdlib,
+                  webmachine,
+                  seresye,
+                  esupervisor
                  ]},
   {mod, { distinctivo_app, []}},
   {env, [{http_port, 8888}]}

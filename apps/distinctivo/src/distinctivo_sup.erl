@@ -26,6 +26,10 @@ init([]) ->
                   #worker{
                      id = distinctivo_dispatch,
                      restart = permanent
+                    },
+                  #worker{
+                     id = distinctivo_score,
+                     restart = permanent
                     }
                  ]
      }.
