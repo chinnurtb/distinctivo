@@ -166,5 +166,6 @@ code_change(_OldVsn, #state{ webmachine = Pid } = State, _Extra) ->
 route_table() ->
     [
      {["event"], distinctivo_event_resource, []},
+     {["state"], distinctivo_state_resource, []},
      {['*'], distinctivo_file_resource, []}
     ].

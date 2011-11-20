@@ -8,9 +8,11 @@ Ext.define('Distinctivo.controller.Simulator',
                ],
                
                stores: [
+                   'SystemState'
                ],
                
                models: [
+                   'Production'
                ],
 
                init: function() {

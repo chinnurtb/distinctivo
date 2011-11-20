@@ -3,7 +3,11 @@ Ext.define('Distinctivo.view.simulator.State', {
                alias : 'widget.state',
                title: 'State',
                layout: 'fit',
-               
+               store: 'SystemState',
+               columns: [
+                   {header: 'Object',  dataIndex: 'object',  flex: 1},
+                   {header: 'Description', dataIndex: 'description', flex: 1}
+               ]
            });
                
 
