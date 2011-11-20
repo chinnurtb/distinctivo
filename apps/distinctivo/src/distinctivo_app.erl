@@ -10,6 +10,8 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
+    seresye:start(distinctivo_callcenter),
+    seresye:add_rules(distinctivo_callcenter, distinctivo_callcenter),
     distinctivo_sup:start_link().
 
 stop(_State) ->
