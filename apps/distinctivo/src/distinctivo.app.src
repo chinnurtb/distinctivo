@@ -8,7 +8,8 @@
                   stdlib,
                   webmachine,
                   seresye,
-                  esupervisor
+                  esupervisor,
+                  jsx
                  ]},
   {mod, { distinctivo_app, []}},
   {env, [{http_port, 8888}]}

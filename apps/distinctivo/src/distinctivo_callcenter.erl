@@ -5,7 +5,7 @@
 -rules([outbound_call_reward, unsatisfied_customer]).
 
 %% API
--export([start/0]).
+-export([start/0, from_json/1]).
 
 start() ->
     seresye:start(?MODULE),
@@ -23,6 +23,30 @@ start() ->
 %% 4. Customer Feedback
 %% {customer_agent_rating, CustomerId, AgentId, Rating (0-10), Timestamp}
 %%
+
+from_json(JSON) ->
+    Object = jsx:json_to_term(JSON),
+    from_json(proplists:get_value(<<"type">>, Object), Object).
+
+from_json(<<"call">>, Object) ->
+    Dir =
+    case proplists:get_value(<<"direction">>, Object) of
+        <<"outbound">> ->
+            outbound;
+        <<"inbound">> ->
+            inbound
+    end,
+    {call, Dir, 
+     proplists:get_value(<<"customer_id">>, Object),
+     proplists:get_value(<<"agent_id">>, Object),
+     proplists:get_value(<<"timestamp">>, Object)};
+from_json(<<"customer_agent_rating">>, Object) ->
+    {customer_agent_rating,
+     proplists:get_value(<<"customer_id">>, Object),
+     proplists:get_value(<<"agent_id">>, Object),
+     proplists:get_value(<<"rating">>, Object),
+     proplists:get_value(<<"timestamp">>, Object)}.
+
 
 
 %% Rules
