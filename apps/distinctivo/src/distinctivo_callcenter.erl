@@ -1,6 +1,15 @@
 -module(distinctivo_callcenter).
+
+%% Rules
 -export([outbound_call_reward/2, unsatisfied_customer/3]).
 -rules([outbound_call_reward, unsatisfied_customer]).
+
+%% API
+-export([start/0]).
+
+start() ->
+    seresye:start(?MODULE),
+    seresye:add_rules(?MODULE, ?MODULE).
 %%
 %%
 %% Events
