@@ -3,7 +3,7 @@
 -behaviour(gen_server).
 
 %% API
--export([start_link/0, change/2]).
+-export([start_link/0, change/2, table/0]).
 
 %% gen_server callbacks
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,
@@ -28,6 +28,9 @@
 %%--------------------------------------------------------------------
 change(Tag, By) ->
     gen_server:call(?SERVER, {change, Tag, By}).
+
+table() ->
+    gen_server:call(?SERVER, table).
 
 start_link() ->
     gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
@@ -64,6 +67,9 @@ init([]) ->
 %%                                   {stop, Reason, State}
 %% @end
 %%--------------------------------------------------------------------
+handle_call(table, _From, #state{ table = Table } = State) ->
+    {reply, ets:tab2list(Table), State};
+
 handle_call({change, Tag, By}, _From, #state{ table = Table } = State) ->
     case ets:lookup(Table, Tag) of
         [] ->
